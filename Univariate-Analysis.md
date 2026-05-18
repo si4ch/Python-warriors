@@ -4,8 +4,10 @@
 
 ```python
 #1
-
 df_gapminder[(df_gapminder['continent'] == 'Europe') & (df_gapminder['year'] == 2007)]['life_exp'].mean()
+```
+```text
+np.float64(77.6486)
 ```
 
 ### Is it possible to calculate the average of the column “continent”? Why or why not?
@@ -14,7 +16,7 @@ df_gapminder[(df_gapminder['continent'] == 'Europe') & (df_gapminder['year'] == 
 
 *Average (mean) can be calculated for numerical variables only.*
 
-### - Subtract each observation in `numbers` from the `average` of this `list`. - Then calculate the **sum** of these deviations from the `average`. What is their sum?
+### - Subtract each observation in `numbers` from the `average` of this `list`. - Then calculate the sum of these deviations from the `average`. What is their sum?
 
 ```python
 numbers = np.array([1, 2, 3, 4])
@@ -25,6 +27,11 @@ sum_of_deviations = np.sum(deviations)
 print('Average:', average)
 print('Deviations:', deviations)
 print('Sum of deviations:', sum_of_deviations)
+```
+```text
+Average: 2.5
+Deviations: [ 1.5  0.5 -0.5 -1.5]
+Sum of deviations: 0.0
 ```
 
 ### Is it possible to calculate the median of the column “continent”? Why or why not?
@@ -85,6 +92,16 @@ print("IQR:", q3 - q1)
 # The violin plot shows the shape of the distribution and where values
 # are more concentrated.
 ```
+![Violin Plot](img/plot5.png)
+```text
+Minimum: 3
+Q1: 7.0
+Median: 12.0
+Q3: 14.0
+Maximum: 21
+Mean: 11.222222222222221
+IQR: 7.0
+```
 
 ### Calculate STD and CV for the SPEED of LEGENDARY and NOT LEGENDARY pokemons. What is the IQR deviation?
 
@@ -95,6 +112,10 @@ for leg, group in df_pokemon.groupby('Legendary')['Speed']:
     cv = (std / group.mean()) * 100
     iqr_dev = (group.quantile(0.75) - group.quantile(0.25)) / 2
     print(f"Legendary: {leg} | STD: {std}, CV: {cv}%, IQR Dev: {iqr_dev}")
+```
+```text
+Legendary: False | STD: 27.843037886581946, CV: 42.53717074753218%, IQR Dev: 20.0
+Legendary: True | STD: 22.952323076660118, CV: 22.91002764101517%, IQR Dev: 10.0
 ```
 
 ### Try to interpret the above-mentioned result and calculate example slant ratios for several groups of Pokémon.
@@ -109,17 +130,25 @@ print(skewness)
 #Values < 0 mean the distribution is left-skewed
 #Values near 0 mean it is symmetric
 ```
+```text
+Legendary
+False    0.390119
+True     0.442403
+Name: Speed, dtype: float64
+```
 
 ### Try to calculate the IQR Skewness coefficient for the sample data:
 
 ```python
 mydata = [3, 7, 8, 5, 12, 14, 21, 13, 18]
 #8
-
 q1, median, q3 = np.percentile(mydata, [25, 50, 75])
 
 iqr_skewness = ((q3 - median) - (median - q1)) / (q3 - q1)
 print(iqr_skewness)
+```
+```text
+-0.42857142857142855
 ```
 
 ### Try to calculate the IQR Kurtosis coefficient for the sample data:
@@ -134,6 +163,9 @@ c90 = np.percentile(mydata, 90)
 
 iqr_kurtosis = (q3 - q1) / (2 * (c90 - c10))
 print(iqr_kurtosis)
+```
+```text
+0.24999999999999997
 ```
 
 ### Add some cross-sectional plots and try to interpret the results.
@@ -154,3 +186,5 @@ plt.show()
 #Violin plot reveals that non-legendary attack stats are heavily concentrated in the lower range (50-70) and right-skewed 
 #Legendary attack stats have a wider flatter distribution centered much higher (100-130)
 ```
+![Boxplot](img/plot10-1.png)
+![Violin Plot](img/plot10-2.png)
