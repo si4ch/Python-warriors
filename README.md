@@ -1,3 +1,3 @@
 # REPORTS
-* **[Google Colab](https://colab.research.google.com/drive/1GbI9PVH5Q2vhtkTzjJ0zFZT0QuBZhLLE?usp=sharing)** - Data Cleansing & Data Visualization
-* **Univariate Analysis** - [markdown file]()
+* **[Google Colab](https://colab.research.google.com/drive/1GbI9PVH5Q2vhtkTzjJOzFZT0QuBZhLLE?usp=sharing)** - Data Cleansing & Data Visualization
+* **Univariate Analysis** - [Markdown File](https://github.com/si4ch/Python-warriors/blob/main/Univariate-Analysis.md)
