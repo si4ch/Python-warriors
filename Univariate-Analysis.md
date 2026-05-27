@@ -109,6 +109,7 @@ plt.xlabel('Price per Night')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_12.png)
+
 *The distribution of `price` is right-skewed.  
 Most listings have relatively low or moderate prices, while a smaller number of listings are much more expensive.
 
@@ -178,6 +179,7 @@ plt.ylabel('Number of Listings')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_13.png)
+
 *The `rating` distribution shows how listings are evaluated by guests.  
 Since ratings are capped at 5, many listings may be concentrated close to the maximum value.*
 
@@ -245,6 +247,7 @@ plt.ylabel('Number of Listings')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_14.png)
+
 *The `number_of_reviews` variable is right-skewed.  
 Most listings have only a small number of reviews, while a smaller group of listings has many reviews.
 
@@ -294,6 +297,7 @@ plt.xticks(rotation=30)
 plt.show()
 ```
 ![Plot](img/airbnb_plot_15.png)
+
 *The `room_type` distribution shows which types of Airbnb listings are most common.  
 The most frequent categories represent the main structure of the Airbnb market in this dataset.*
 
@@ -334,6 +338,7 @@ plt.ylabel('Location')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_16.png)
+
 *The chart shows that Airbnb listings are concentrated in several popular locations.  
 The most frequent locations include Bedford-Stuyvesant, Williamsburg, Harlem, Bushwick, and Hell's Kitchen.
 
@@ -370,6 +375,7 @@ plt.ylabel('Neighbourhood')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_17.png)
+
 *The top neighbourhoods contain the highest number of Airbnb listings.  
 This concentration may be connected with central location, tourism, transport access, or popularity among visitors.*
 
@@ -413,6 +419,7 @@ plt.ylabel('Number of Listings')
 plt.show()
 ```
 ![Plot](img/airbnb_plot_18.png)
+
 *The `is_rated` variable shows whether a listing has received a rating.  
 Listings without ratings may be new, inactive, or not frequently booked.*
 *## Conclusions
