@@ -3,54 +3,6 @@
 
 ### UNIVARIATE ANALYSIS
 
-First, we import the necessary libraries for data analysis and visualization. Then, we display the first few rows of the dataset to understand its structure.
-
-```python
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-from scipy import stats
-
-airbnb.head()
-```
-```text
-   listing_id  price    rating listing_added  \
-0        3831   89.0  3.273935    2018-12-30   
-1        6848  140.0  3.495760    2018-12-24   
-2        7322  140.0  4.389051    2018-12-26   
-3        7726   99.0  3.305382    2018-12-17   
-4       12303  120.0  4.568745    2018-03-27   
-
-                                              name  host_id         host_name  \
-0                  Cozy Entire Floor of Brownstone     4869       LisaRoxanne   
-1                 Only 2 stops to Manhattan studio    15991     Allen & Irina   
-2                                  Chelsea Perfect    18946              Doti   
-3  Hip Historic Brownstone Apartment with Backyard    20950  Adam And Charity   
-4                1bdr w private bath. in lofty apt    47618           Yolande   
-
-      room_type  number_of_reviews last_review  reviews_per_month  \
-0  Entire place                270  2019-07-05               4.64   
-1  Entire place                148  2019-06-29               1.20   
-2  Private Room                260  2019-07-01               2.12   
-3  Entire place                 53  2019-06-22               4.44   
-4  Private Room                 25  2018-09-30               0.23   
-
-   availability_365  number_of_stays   5_stars  latitude  longitude  \
-0               194            324.0  0.757366  40.68514  -73.95976   
-1                46            177.6  0.789743  40.70837  -73.95352   
-2                12            312.0  0.669873  40.74192  -73.99501   
-3                21             63.6  0.640251  40.67592  -73.94694   
-4               311             30.0  0.918593  40.69673  -73.97584   
-
-  neighbourhood        borough  is_rated  logprice  
-0      brooklyn   clinton hill         1  4.488636  
-1      brooklyn   williamsburg         1  4.941642  
-2     manhattan        chelsea         1  4.941642  
-3      brooklyn  crown heights         1  4.595120  
-4      brooklyn    fort greene         1  4.787492  
-```
-
 We calculate descriptive statistics for the numerical columns. This gives us a quick overview of the central tendency, dispersion, and shape of the dataset's distribution.
 
 ```python
@@ -79,7 +31,7 @@ min             0.000000         0.000000     0.000000
 max            16.220000       612.000000     0.950339  
 ```
 
-Next, we generate a detailed summary statistics table specifically for the `price` column. This includes measures like variance, interquartile range (IQR), skewness, and kurtosis to deeply analyze the pricing distribution.
+We generate a detailed summary statistics table specifically for the `price` column. This includes measures like variance, interquartile range (IQR), skewness, and kurtosis to deeply analyze the pricing distribution.
 
 ```python
 # summary statistics for price
