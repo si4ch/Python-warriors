@@ -1,8 +1,6 @@
 # Univariate-Analysis 
 ## Airbnb
 
-### UNIVARIATE ANALYSIS
-
 We calculate descriptive statistics for the numerical columns. This gives us a quick overview of the central tendency, dispersion, and shape of the dataset's distribution.
 
 ```python
