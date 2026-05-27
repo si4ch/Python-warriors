@@ -1,5 +1,354 @@
-# Univariate-Analysis (Exercise 8 solution)
+# Univariate-Analysis 
+## Airbnb
 
+```python
+# summary statistics for price
+price_summary = pd.DataFrame({
+    'Statistic': [
+        'Mean',
+        'Median',
+        'Mode',
+        'Minimum',
+        'Maximum',
+        'Range',
+        'Variance',
+        'Standard deviation',
+        'IQR',
+        'Skewness',
+        'Kurtosis'
+    ],
+    'Value': [
+        airbnb['price'].mean(),
+        airbnb['price'].median(),
+        airbnb['price'].mode().iloc[0],
+        airbnb['price'].min(),
+        airbnb['price'].max(),
+        airbnb['price'].max() - airbnb['price'].min(),
+        airbnb['price'].var(),
+        airbnb['price'].std(),
+        stats.iqr(airbnb['price']),
+        stats.skew(airbnb['price']),
+        stats.kurtosis(airbnb['price'])
+    ]
+})
+
+price_summary
+```
+```text
+             Statistic         Value
+0                 Mean    150.712090
+1               Median    110.000000
+2                 Mode    150.000000
+3              Minimum      0.000000
+4              Maximum   8000.000000
+5                Range   8000.000000
+6             Variance  40922.353238
+7   Standard deviation    202.292741
+8                  IQR    105.000000
+9             Skewness     14.742521
+10            Kurtosis    381.800146
+```
+```python
+# visualizing the distribution of price
+plt.figure(figsize=(8, 5))
+
+sns.histplot(data=airbnb[airbnb['price'] < airbnb['price'].quantile(0.95)], x='price', bins=30, kde=True)
+
+plt.title('Distribution of Airbnb Prices up to 95th Percentile')
+plt.xlabel('Price per Night')
+plt.ylabel('Number of Listings')
+plt.show()
+```
+![Plot](img/airbnb_plot_11.png)
+```python
+# boxplot of price
+plt.figure(figsize=(8, 5))
+
+sns.boxplot(x=airbnb[airbnb['price'] < airbnb['price'].quantile(0.95)]['price'])
+
+plt.title('Boxplot of Airbnb Prices up to 95th Percentile')
+plt.xlabel('Price per Night')
+plt.show()
+```
+![Plot](img/airbnb_plot_12.png)
+*The distribution of `price` is right-skewed.  
+Most listings have relatively low or moderate prices, while a smaller number of listings are much more expensive.
+
+Because of this, the median is a better measure of a typical Airbnb price than the mean.*
+```python
+# summary statistics for rating
+rating_summary = pd.DataFrame({
+    'Statistic': [
+        'Mean',
+        'Median',
+        'Mode',
+        'Minimum',
+        'Maximum',
+        'Range',
+        'Variance',
+        'Standard deviation',
+        'IQR',
+        'Skewness',
+        'Kurtosis'
+    ],
+    'Value': [
+        airbnb['rating'].mean(),
+        airbnb['rating'].median(),
+        airbnb['rating'].mode().iloc[0],
+        airbnb['rating'].min(),
+        airbnb['rating'].max(),
+        airbnb['rating'].max() - airbnb['rating'].min(),
+        airbnb['rating'].var(),
+        airbnb['rating'].std(),
+        stats.iqr(airbnb['rating'].dropna()),
+        stats.skew(airbnb['rating'].dropna()),
+        stats.kurtosis(airbnb['rating'].dropna())
+    ]
+})
+
+rating_summary
+```
+```text
+             Statistic     Value
+0                 Mean  4.013874
+1               Median  4.027965
+2                 Mode  5.000000
+3              Minimum  3.000633
+4              Maximum  5.000000
+5                Range  1.999367
+6             Variance  0.330450
+7   Standard deviation  0.574847
+8                  IQR  0.995061
+9             Skewness -0.041153
+10            Kurtosis -1.193729
+```
+```python
+# visualizing the distribution of rating
+plt.figure(figsize=(8, 5))
+
+sns.histplot(data=airbnb, x='rating', bins=20,kde=True)
+
+plt.title('Distribution of Airbnb Ratings')
+plt.xlabel('Rating')
+plt.ylabel('Number of Listings')
+plt.show()
+```
+![Plot](img/airbnb_plot_13.png)
+*The `rating` distribution shows how listings are evaluated by guests.  
+Since ratings are capped at 5, many listings may be concentrated close to the maximum value.*
+```python
+# summary statistics for number_of_reviews
+reviews_summary = pd.DataFrame({
+    'Statistic': [
+        'Mean',
+        'Median',
+        'Mode',
+        'Minimum',
+        'Maximum',
+        'Range',
+        'Variance',
+        'Standard deviation',
+        'IQR',
+        'Skewness',
+        'Kurtosis'
+    ],
+    'Value': [
+        airbnb['number_of_reviews'].mean(),
+        airbnb['number_of_reviews'].median(),
+        airbnb['number_of_reviews'].mode().iloc[0],
+        airbnb['number_of_reviews'].min(),
+        airbnb['number_of_reviews'].max(),
+        airbnb['number_of_reviews'].max() - airbnb['number_of_reviews'].min(),
+        airbnb['number_of_reviews'].var(),
+        airbnb['number_of_reviews'].std(),
+        stats.iqr(airbnb['number_of_reviews']),
+        stats.skew(airbnb['number_of_reviews']),
+        stats.kurtosis(airbnb['number_of_reviews'])
+    ]
+})
+
+reviews_summary
+```
+```text
+             Statistic        Value
+0                 Mean    22.473331
+1               Median     5.000000
+2                 Mode     0.000000
+3              Minimum     0.000000
+4              Maximum   510.000000
+5                Range   510.000000
+6             Variance  1866.346992
+7   Standard deviation    43.201238
+8                  IQR    21.000000
+9             Skewness     3.626048
+10            Kurtosis    17.837771
+```
+```python
+# visualizong the distribution of number_of_reviews
+plt.figure(figsize=(8, 5))
+
+sns.histplot(data=airbnb[airbnb['number_of_reviews'] < airbnb['number_of_reviews'].quantile(0.95)], x='number_of_reviews', bins=30,kde=True)
+
+plt.title('Distribution of Number of Reviews up to 95th Percentile')
+plt.xlabel('Number of Reviews')
+plt.ylabel('Number of Listings')
+plt.show()
+```
+![Plot](img/airbnb_plot_14.png)
+*The `number_of_reviews` variable is right-skewed.  
+Most listings have only a small number of reviews, while a smaller group of listings has many reviews.
+
+This suggests that only some listings are very active or popular among guests.*
+### Categorical variables
+```python
+# frequency table for room_type
+airbnb['room_type'].value_counts()
+```
+```text
+room_type
+Entire place    5172
+Private Room    4595
+Shared room      226
+Name: count, dtype: int64
+```
+```python
+# percentage distribution of room_type
+airbnb['room_type'].value_counts(normalize=True) * 100
+```
+```text
+room_type
+Entire place    51.756229
+Private Room    45.982188
+Shared room      2.261583
+Name: proportion, dtype: float64
+```
+```python
+# visualizing room_type distribution
+plt.figure(figsize=(8, 5))
+
+sns.countplot(data=airbnb, x='room_type',order=airbnb['room_type'].value_counts().index)
+
+plt.title('Number of Listings by Room Type')
+plt.xlabel('Room Type')
+plt.ylabel('Number of Listings')
+plt.xticks(rotation=30)
+plt.show()
+```
+![Plot](img/airbnb_plot_15.png)
+*The `room_type` distribution shows which types of Airbnb listings are most common.  
+The most frequent categories represent the main structure of the Airbnb market in this dataset.*
+```python
+# top 10 locations in the borough column
+airbnb['borough'].value_counts().head(10)
+```
+```text
+borough
+bedford-stuyvesant    774
+williamsburg          764
+harlem                540
+bushwick              501
+hell's kitchen        405
+upper west side       394
+upper east side       372
+east village          366
+crown heights         325
+midtown               321
+Name: count, dtype: int64
+```
+```python
+# visualizing top 10 locations
+top_borough = airbnb['borough'].value_counts().head(10)
+
+plt.figure(figsize=(8, 5))
+
+sns.barplot(x=top_borough.values, y=top_borough.index)
+
+plt.title('Top 10 Locations by Number of Listings')
+plt.xlabel('Number of Listings')
+plt.ylabel('Location')
+plt.show()
+```
+![Plot](img/airbnb_plot_16.png)
+*The chart shows that Airbnb listings are concentrated in several popular locations.  
+The most frequent locations include Bedford-Stuyvesant, Williamsburg, Harlem, Bushwick, and Hell's Kitchen.
+
+This means that listings are not evenly distributed across all locations. Some areas have much stronger Airbnb activity than others.*
+```python
+airbnb['neighbourhood'].value_counts().head(10)
+```
+```text
+neighbourhood
+manhattan        4436
+brooklyn         4075
+queens           1180
+bronx             229
+staten island      73
+Name: count, dtype: int64
+```
+```python
+# visualizing top 10 neighbourhoods
+top_neighbourhoods = airbnb['neighbourhood'].value_counts().head(10)
+
+plt.figure(figsize=(8, 5))
+
+sns.barplot(x=top_neighbourhoods.values, y=top_neighbourhoods.index)
+
+plt.title('Top 10 Neighbourhoods by Number of Listings')
+plt.xlabel('Number of Listings')
+plt.ylabel('Neighbourhood')
+plt.show()
+```
+![Plot](img/airbnb_plot_17.png)
+*The top neighbourhoods contain the highest number of Airbnb listings.  
+This concentration may be connected with central location, tourism, transport access, or popularity among visitors.*
+```python
+# frequency table for is_rated
+airbnb['is_rated'].value_counts()
+```
+```text
+is_rated
+1    7922
+0    2071
+Name: count, dtype: int64
+```
+```python
+# percentage distribution of is_rated
+airbnb['is_rated'].value_counts(normalize=True) * 100
+```
+```text
+is_rated
+1    79.275493
+0    20.724507
+Name: proportion, dtype: float64
+```
+```python
+# visualizing rated and unrated listings
+plt.figure(figsize=(6, 4))
+
+sns.countplot(data=airbnb, x='is_rated')
+
+plt.title('Number of Rated and Unrated Listings')
+plt.xlabel('Is Rated')
+plt.ylabel('Number of Listings')
+plt.show()
+```
+![Plot](img/airbnb_plot_18.png)
+*The `is_rated` variable shows whether a listing has received a rating.  
+Listings without ratings may be new, inactive, or not frequently booked.*
+*## Conclusions
+
+The univariate analysis helped us understand the main characteristics of the cleaned Airbnb dataset.
+
+Main findings:
+
+- The `price` variable is right-skewed, which means that most listings are cheaper, while a smaller number of expensive listings increase the average price.
+- The median is a better measure of typical Airbnb price than the mean because the mean is affected by outliers.
+- Ratings are limited to the range from 0 to 5 and are often concentrated near higher values.
+- The `number_of_reviews` variable is right-skewed because many listings have few reviews, while only some listings have many reviews.
+- The categorical variables show which room types, boroughs, and neighbourhoods are most common in the dataset.*
+
+
+## Exercise 8 solution (pokemon)
 ### How to calculate the mean life expectancy for EUROPEan countries (2007).
 
 ```python
